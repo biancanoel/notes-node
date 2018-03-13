@@ -40,6 +40,13 @@ var getAll = () => {
 
 var read = (title) => {
     console.log("reading note: ", title)
+    //fetch notes
+    var notes = fetchNotes();
+    //filter out note that needs to be read 
+    var filteredNote = notes.filter( (note) => note.title === title)
+    //return statement
+
+    return filteredNote[0];
 }
 
 var remove = (title) => {
@@ -54,16 +61,21 @@ var remove = (title) => {
     //if original array is longer than filtered notes array, its TRUE that a note was deleted. otherwise return false
     return notes.length !== filteredNotes.length;
     
-    
 
 }
 
+var logNote = (note) => {
+    console.log ("-----");
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+}
 
 
 module.exports = {
     addNote: addNote,
     getAll: getAll,
     remove: remove,
-    read: read
+    read: read,
+    logNote: logNote
 }
 

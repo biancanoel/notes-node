@@ -13,12 +13,10 @@ console.log('Command: ', command);
 console.log('Yargs: ',argv);
 
 if (command==="add") {
-   var note = notes.addNote(argv.title, argv.body)
+   var note = notes.addNote(argv.title, argv.body);
    if (note) {
     console.log('note created');
-    console.log("--");
-    console.log(`Title: ${note.title}`);
-    console.log(`Body: ${note.body}`)
+    notes.logNote(note);
    } else {
     console.log('note title taken')
    }
@@ -27,7 +25,13 @@ if (command==="add") {
     notes.getAll();
 
 } else if (command ==="read"){
-    notes.read(argv.title)
+    var note = notes.read(argv.title); //stores return value of read function (which will be note title and body)
+    if (note) {
+        console.log("note read");
+        notes.logNote(note);
+    } else {
+        console.log('no note by that title could be found');
+    }
     
 } else if (command ==="remove"){
     var noteRemoved = notes.remove(argv.title); //will be true or false based on returned value of remove function (t or f)
