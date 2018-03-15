@@ -1,4 +1,4 @@
-console.log("Starting notes.js");
+
 //console.log(module); shows you a ton of properties 
 //module.exports.age = 25; using export property in module object, set age to 25
 const fs = require('fs');
@@ -36,16 +36,20 @@ var addNote = (title, body) => {
 
 var getAll = () => {
     console.log("getting all notes");
+    return fetchNotes();
 };
 
 var read = (title) => {
     console.log("reading note: ", title)
     //fetch notes
     var notes = fetchNotes();
-    //filter out note that needs to be read 
-    var filteredNote = notes.filter( (note) => note.title === title)
-    //return statement
+    // console.log(notes);
 
+    //filter out note that needs to be read 
+    var filteredNote = notes.filter( (note) => note.title === title);
+    //console.log(filteredNote);
+    
+    //return statement
     return filteredNote[0];
 }
 
@@ -65,6 +69,7 @@ var remove = (title) => {
 }
 
 var logNote = (note) => {
+    debugger;
     console.log ("-----");
     console.log(`Title: ${note.title}`);
     console.log(`Body: ${note.body}`);
